@@ -20,6 +20,11 @@
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+
+    .anchor {
+    padding-top: 50px;
+    margin-top: -50px;
+    }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -50,28 +55,28 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html#abstract">Abstract</a>
+                        <a href="#abstract">Abstract</a>
                     </li>
                     <li>
                         <a href="#intro">Introduction</a>
                     </li>
                     <li>
-                        <a href="#">Related Work</a>
+                        <a href="#related">Related Work</a>
                     </li>
                     <li>
-                        <a href="#">Feature Extraction</a>
+                        <a href="#feature-extraction">Feature Extraction</a>
                     </li>
                     <li>
-                        <a href="#">Classification</a>
+                        <a href="#classification">Classification</a>
                     </li>
                     <li>
-                        <a href="#">Results</a>
+                        <a href="#results">Results</a>
                     </li>
                     <li>
-                        <a href="#">Conclusion</a>
+                        <a href="#conclusion">Conclusion</a>
                     </li>
                     <li>
-                        <a href="#">References</a>
+                        <a href="#references">References</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +99,7 @@
         </div>
         <!-- /.row -->
 
-        <div class="row" id="abstract">
+        <div class="row anchor" id="abstract">
             <div class="col-lg-12 text-left">
                 <h1>Abstract</h1>
                 <p>This project aims to answer the question: do source separation techniques aid in genre classification? Past studies have examined the effects of genre classification using harmonic-percussive source separation. This project reexamines this approach with more modernized source separation algorithms: Librosa’s harmonic-percussive source separation and REpeating Pattern Extraction Technique (REPET). Both surface and rhythmic features were extracted from each separation and compared the results over three types of models: nearest-neighbor, Gaussian Naive Bayes, and a support vector classification. The performance of each of these models has been evaluated based on examining the accuracy of their predictions and their respective confusion matrices, ultimately examining which source separation is more effective in genre classification.</p>
@@ -102,7 +107,7 @@
         </div>
         <!-- /.row -->
 
-        <div class="row" id="intro">
+        <div class="row anchor" id="intro">
             <div class="col-lg-12 text-left">
                 <h1>Introduction</h1>
                 <p>One largely unexplored field of computer science is musical genre classification. Musical genre classification of audio uses machine learning to assign a musical genre to a given audio file. The best results would see the model predicting the correct genre every time, but that is a task that would trouble most humans. One reason it is so complicated is there isn’t a certain approach to accurately predicting what class or genre an audio file represents. This is due to the small differences between genres that aren’t explicitly defined. Because of the ill-defined boundaries, musical genre classification is an especially difficult problem for computers to solve.</p>
@@ -112,7 +117,7 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
+        <div class="row anchor" id="related">
             <div class="col-lg-12 text-left">
                 <h1>Related Work</h1>
                 <p>Much of the related work on genre classification focuses on which particular features should be extracted from each of the sources. George Tzanetakis has published multiple papers examining musical genre classification [1][2]. Tzanetakis’ work on Automatic Musical Genre Classification of Audio Signals [1] describes specific features which are extracted to train a Gaussian regression model, which was used as a point of reference when deciding which features to focus on during model training.</p>
@@ -122,29 +127,35 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
+        <div class="row anchor" id="feature-extraction">
             <div class="col-lg-12 text-left">
                 <h1>Feature Extraction</h1>
                 <p>The dataset used in this experiment was the GTZAN Genre Collection, a collection of one thousand 22050Hz Mono 16-bit audio files in .wav format, each 30 seconds long. The collection includes 10 different genre labels, each represented by 100 tracks. It was most famously used in Tzanetakis et al’s paper Musical Genre Classification of Audio Signals [2]. Figure 1 lists the ten genres used in GTZAN.</p>
 
-                <p>fig 1</p>
-
+                <div class="col-lg-12 text-center">
+                    <img src="images/fig1.png" width="700">
+                </div>
+                
                 <p>Two different source separation techniques were used on each audio file. The first, NUSSL’s implementation of the REPET algorithm, decomposed each file into a background and foreground component. The other, Librosa’s HPSS function, broke down each audio sample into percussive and harmonic components. Once all source separation was completed, there were five variations of each GTZAN audio file.</p>
 
                 <p>Feature extraction was modeled after Tzanatakis’ et al’s experiment in Automatic Musical Genre Classification Of Audio Signals [2]. Features were broken down into two different sets, musical surface features and rhythm features. Musical surface features include characteristics of music related texture, timbre and instrumentation. These were extracted using audio feature extraction libraries Libxtract and BBC.  The 9-dimensional feature vector used to encapsulate these features is described in Figure 2. </p>
 
-                <p>fig 2</p>
+                <div class="col-lg-12 text-center">
+                    <img src="images/fig2.png" width="700">
+                </div>
 
                 <p>Rhythm features were extracted using Librosa’s tempogram implementation. By taking the mean of tempogram values over time, the top two repeating tempos and their strengths were calculated. In addition, the predicted tempo was extracted by weighting the autocorrelation by a log-normal distribution. The 5-dimension rhythm feature vector is described in Figure 3. </p>
 
-                <p>fig 3</p>
+                <div class="col-lg-12 text-center">
+                    <img src="images/fig3.png" width="700">
+                </div>
 
                 <p>For each variation of each GTZAN audio file, a 14 dimensional feature vector was calculated with a 15th column added to indicate genre. Five separate 1000 line datasets were created corresponding to each source variation. In addition, four additional datasets were created by manipulating the feature vectors extracted from the source separated audio. For each source separation method, a dataset was created by taking the average of features from the two different sources. Another was created that had a 28 dimensional feature vector which included features from both sources. </p>
             </div>
         </div>
         <!-- /.row -->
 
-        <div class="row">
+        <div class="row anchor" id="classification">
             <div class="col-lg-12 text-left">
                 <h1>Classification</h1>
                 <p>After features were extracted from each type of source separation and sorted in feature vectors in their respective datasets, three different models were trained: a nearest-neighbor classifier, a Gaussian-Naive Bayes classifier, and a support vector classifier. Each dataset was partitioned into 80% used for training the models and 20% of the dataset put aside for testing. Each model was trained and tested 100 times using randomized and genre-balanced permutations of the datasets, and the average prediction accuracy over these iterations was recorded. Additionally, the confusion matrices of each model and each source separation were examined and compared in order to gain a better understanding on how each source separation technique affected classification between different genres. </p>
@@ -152,34 +163,42 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
+        <div class="row anchor" id="results">
             <div class="col-lg-12 text-left">
                 <h1>Results</h1>
                 <p>Each type of model was ran on each dataset 100 times. The average classification accuracy of each model on each dataset was calculated, shown in Figure 4. The Gaussian-Naive Bayes classifier was the most accurate model for every single test dataset. The control dataset which contained features extracted from the original audio file was accurately classified 43.65% of the time. The dataset which produced the most accurate genre classification was the combination of REPET background and foreground features which accurately classified an audio sample 46.31% of the time. The only individual source variation that produced more accurate classifications, on average, than the control was the REPET Background source which was on average 1% better at 44.65% prediction accuracy. </p>
 
-                <p>fig 4</p>
+                <div class="col-lg-12 text-center">
+                    <img src="images/fig4.png" width="750">
+                </div>
 
                 <p>Looking at the confusion matrices for individual models gives us insight into whether certain genres were more accurately classified than others. The confusion matrix for a Gaussian Model ran on the control dataset, displayed in Figure 5, shows that metal and classical music were very accurately classified with 17 and 16 labels out of 20 accurately predicted. On the other end of the spectrum, hip hop, country and rock were very poorly classified with no genre having more than 4 labels accurately predicted. In fact, Hip hop audio files were predicted to be pop twice as often as they were predicted to be hip hop. This behavior is expect considering how much genre crossover there is. Metal and classical music have distinct characteristics when compared to other genres and thus should be more easily classifiable. Hip hop and pop have a lot of overlap in real life which makes differentiating them difficult. </p>
 
-                <p>fig5</p>
+                <div class="col-lg-12 text-center">
+                    <img src="images/fig5.png" width="500">
+                </div>
 
                 <p>Looking at the confusion matrices for the REPET background and combo datasets, shown in figures 6 and 7, there is no genre that these datasets classify significantly better. This is not surprising considering that neither datasets classifies more than 3% better than the control, on average. This corresponds to about 6 labels per dataset. While these classifications are more accurate, it seems that it does not benefit any genre in particular. It is important to note that the confusion matrices change each time a model is created which makes it difficult to analyze specific matrices. </p>
 
-                <p>fig 6</p>
+                <div class="col-lg-6 text-center">
+                    <img src="images/fig6.png" width="500">
+                </div>
 
-                <p>fig 7</p>
+                <div class="col-lg-6 text-center">
+                    <img src="images/fig7.png" width="500">
+                </div>
             </div>
         </div>
         <!-- /.row -->
 
-        <div class="row" id="conclusion">
+        <div class="row anchor" id="conclusion">
             <div class="col-lg-12 text-left">
                 <h1>Conclusion</h1>
-                <p>FILL IN </p>
+                <p>Automatic musical genre classification remains a mostly unsolved problem. While we were able to label certain distinct genres, such as metal and classical, very accurately, the crossover between different types of music makes classification very difficult. While the REPET background and the REPET combo datasets were more accurate over 100 trials, the increase in prediction accuracy was marginal. Thus we conclude that source separation does not significantly increase the accuracy of automatic genre classification. </p>
             </div>
         </div>
 
-        <div class="row" id="references">
+        <div class="row anchor" id="references">
             <div class="col-lg-12 text-left">
                 <h1>References</h1>
                 <ol>
@@ -195,12 +214,9 @@
         </div>
         <!-- /.row -->
 
-
-
-
-
-
-
+        <br>
+        <br>
+        <br>
 
 
     </div>
