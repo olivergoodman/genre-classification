@@ -1,72 +1,217 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <meta name="viewport" content="width=device-width">
+    <title>Genre Classification</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        <p>{{ site.description | default: site.github.project_tagline }}</p>
-        <p>Daniel Thomas</p>
-        <p>Daniel Perlovsky</p>
-        <p>Oliver Goodman</p>
 
-        {% if site.github.is_project_page %}
-          <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ github_name }}</small></a></p>
-        {% endif %}
+</head>
 
-        {% if site.github.is_user_page %}
-          <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-        {% endif %}
+<body>
 
-        {% if site.show_downloads %}
-          <ul>
-            <li><a href="{{ site.github.zip_url }}">Download <strong>ZIP File</strong></a></li>
-            <li><a href="{{ site.github.tar_url }}">Download <strong>TAR Ball</strong></a></li>
-            <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
-          </ul>
-        {% endif %}
-      </header>
-      <section>
-      <img src="/assets/images/mushroom.png">
-      
-      <h1>Abstract</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Genre Classification</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html#abstract">Abstract</a>
+                    </li>
+                    <li>
+                        <a href="#intro">Introduction</a>
+                    </li>
+                    <li>
+                        <a href="#">Related Work</a>
+                    </li>
+                    <li>
+                        <a href="#">Feature Extraction</a>
+                    </li>
+                    <li>
+                        <a href="#">Classification</a>
+                    </li>
+                    <li>
+                        <a href="#">Results</a>
+                    </li>
+                    <li>
+                        <a href="#">Conclusion</a>
+                    </li>
+                    <li>
+                        <a href="#">References</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-      <p>
-      This project aims to answer the question: do source separation techniques aid in genre classification? Past studies have examined the effects of genre classification using harmonic-percussive source separation. This project reexamines this approach with more modernized source separation algorithms: Librosa’s harmonic-percussive source separation and REpeating Pattern Extraction Technique (REPET). Both surface and rhythmic features were extracted from each separation and compared the results over three types of models: nearest-neighbor, Gaussian Naive Bayes, and a support vector classification. The performance of each of these models has been evaluated based on examining the accuracy of their predictions and their respective confusion matrices, ultimately examining which source separation is more effective in genre classification.
-      </p>
+    <!-- Page Content -->
+    <div class="container">
 
-      <!-- {{ content }} -->
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Genre Classification</h1>
+                <h5>Comparing genre classification between different source separation techniques</h5>
+                <h5>Daniel Thomas, Daniel Perlovsky, and Oliver Goodman</h5>
+                <h5>EECS 352, Instructor Bryan Pardo, Winter 2017</h5>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
 
-      </section>
-      <footer>
-        {% if site.github.is_project_page %}
-        <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
-        {% endif %}
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        <div class="row" id="abstract">
+            <div class="col-lg-12 text-left">
+                <h1>Abstract</h1>
+                <p>This project aims to answer the question: do source separation techniques aid in genre classification? Past studies have examined the effects of genre classification using harmonic-percussive source separation. This project reexamines this approach with more modernized source separation algorithms: Librosa’s harmonic-percussive source separation and REpeating Pattern Extraction Technique (REPET). Both surface and rhythmic features were extracted from each separation and compared the results over three types of models: nearest-neighbor, Gaussian Naive Bayes, and a support vector classification. The performance of each of these models has been evaluated based on examining the accuracy of their predictions and their respective confusion matrices, ultimately examining which source separation is more effective in genre classification.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row" id="intro">
+            <div class="col-lg-12 text-left">
+                <h1>Introduction</h1>
+                <p>One largely unexplored field of computer science is musical genre classification. Musical genre classification of audio uses machine learning to assign a musical genre to a given audio file. The best results would see the model predicting the correct genre every time, but that is a task that would trouble most humans. One reason it is so complicated is there isn’t a certain approach to accurately predicting what class or genre an audio file represents. This is due to the small differences between genres that aren’t explicitly defined. Because of the ill-defined boundaries, musical genre classification is an especially difficult problem for computers to solve.</p>
+
+                <p>This experiment aims to help solve that problem by giving the model more to listen to. When separating an audio file into different sources using REPET and harmonic-percussive source separation, unique features will arise that were unavailable in the original file. The basic steps involved in this experiment are source separation at scale, feature development, mass feature extraction, and model refinement.</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h1>Related Work</h1>
+                <p>Much of the related work on genre classification focuses on which particular features should be extracted from each of the sources. George Tzanetakis has published multiple papers examining musical genre classification [1][2]. Tzanetakis’ work on Automatic Musical Genre Classification of Audio Signals [1] describes specific features which are extracted to train a Gaussian regression model, which was used as a point of reference when deciding which features to focus on during model training.</p>
+
+                <p>This project compares genre classification results between two source separation techniques. The first is Rafii and Pardo’s REpeating Pattern Extraction Technique (REPET) [5], an algorithm that separates a signal into a foreground and repeating background source using autocorrelation techniques. The second type of source separation is a harmonic-percussive source separation, as described in Tachibana et al’s work [7]. Here, an audio time series is divided into separate harmonic and percussive components, which are not based on any repeating background structures in a similar manner to REPET. </p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h1>Feature Extraction</h1>
+                <p>The dataset used in this experiment was the GTZAN Genre Collection, a collection of one thousand 22050Hz Mono 16-bit audio files in .wav format, each 30 seconds long. The collection includes 10 different genre labels, each represented by 100 tracks. It was most famously used in Tzanetakis et al’s paper Musical Genre Classification of Audio Signals [2]. Figure 1 lists the ten genres used in GTZAN.</p>
+
+                <p>fig 1</p>
+
+                <p>Two different source separation techniques were used on each audio file. The first, NUSSL’s implementation of the REPET algorithm, decomposed each file into a background and foreground component. The other, Librosa’s HPSS function, broke down each audio sample into percussive and harmonic components. Once all source separation was completed, there were five variations of each GTZAN audio file.</p>
+
+                <p>Feature extraction was modeled after Tzanatakis’ et al’s experiment in Automatic Musical Genre Classification Of Audio Signals [2]. Features were broken down into two different sets, musical surface features and rhythm features. Musical surface features include characteristics of music related texture, timbre and instrumentation. These were extracted using audio feature extraction libraries Libxtract and BBC.  The 9-dimensional feature vector used to encapsulate these features is described in Figure 2. </p>
+
+                <p>fig 2</p>
+
+                <p>Rhythm features were extracted using Librosa’s tempogram implementation. By taking the mean of tempogram values over time, the top two repeating tempos and their strengths were calculated. In addition, the predicted tempo was extracted by weighting the autocorrelation by a log-normal distribution. The 5-dimension rhythm feature vector is described in Figure 3. </p>
+
+                <p>fig 3</p>
+
+                <p>For each variation of each GTZAN audio file, a 14 dimensional feature vector was calculated with a 15th column added to indicate genre. Five separate 1000 line datasets were created corresponding to each source variation. In addition, four additional datasets were created by manipulating the feature vectors extracted from the source separated audio. For each source separation method, a dataset was created by taking the average of features from the two different sources. Another was created that had a 28 dimensional feature vector which included features from both sources. </p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h1>Classification</h1>
+                <p>After features were extracted from each type of source separation and sorted in feature vectors in their respective datasets, three different models were trained: a nearest-neighbor classifier, a Gaussian-Naive Bayes classifier, and a support vector classifier. Each dataset was partitioned into 80% used for training the models and 20% of the dataset put aside for testing. Each model was trained and tested 100 times using randomized and genre-balanced permutations of the datasets, and the average prediction accuracy over these iterations was recorded. Additionally, the confusion matrices of each model and each source separation were examined and compared in order to gain a better understanding on how each source separation technique affected classification between different genres. </p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h1>Results</h1>
+                <p>Each type of model was ran on each dataset 100 times. The average classification accuracy of each model on each dataset was calculated, shown in Figure 4. The Gaussian-Naive Bayes classifier was the most accurate model for every single test dataset. The control dataset which contained features extracted from the original audio file was accurately classified 43.65% of the time. The dataset which produced the most accurate genre classification was the combination of REPET background and foreground features which accurately classified an audio sample 46.31% of the time. The only individual source variation that produced more accurate classifications, on average, than the control was the REPET Background source which was on average 1% better at 44.65% prediction accuracy. </p>
+
+                <p>fig 4</p>
+
+                <p>Looking at the confusion matrices for individual models gives us insight into whether certain genres were more accurately classified than others. The confusion matrix for a Gaussian Model ran on the control dataset, displayed in Figure 5, shows that metal and classical music were very accurately classified with 17 and 16 labels out of 20 accurately predicted. On the other end of the spectrum, hip hop, country and rock were very poorly classified with no genre having more than 4 labels accurately predicted. In fact, Hip hop audio files were predicted to be pop twice as often as they were predicted to be hip hop. This behavior is expect considering how much genre crossover there is. Metal and classical music have distinct characteristics when compared to other genres and thus should be more easily classifiable. Hip hop and pop have a lot of overlap in real life which makes differentiating them difficult. </p>
+
+                <p>fig5</p>
+
+                <p>Looking at the confusion matrices for the REPET background and combo datasets, shown in figures 6 and 7, there is no genre that these datasets classify significantly better. This is not surprising considering that neither datasets classifies more than 3% better than the control, on average. This corresponds to about 6 labels per dataset. While these classifications are more accurate, it seems that it does not benefit any genre in particular. It is important to note that the confusion matrices change each time a model is created which makes it difficult to analyze specific matrices. </p>
+
+                <p>fig 6</p>
+
+                <p>fig 7</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row" id="conclusion">
+            <div class="col-lg-12 text-left">
+                <h1>Conclusion</h1>
+                <p>FILL IN </p>
+            </div>
+        </div>
+
+        <div class="row" id="references">
+            <div class="col-lg-12 text-left">
+                <h1>References</h1>
+                <ol>
+                    <li><a href="http://www.cs.northwestern.edu/~pardo/courses/eecs352/papers/genre%20classification%20low%20level%20-%20tzanetakis.pdf">G.A. Tzanetakis, G. Essel, P. Cook, <i>Automatic Musical Genre Classification Of Audio Signals</i></a></li>
+                    <li><a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">G.A. Tzanetakis, P. Cook, <i>Musical Genre Classification of Audio Signals</i></a></li>
+                    <li><a href="https://pdfs.semanticscholar.org/e4e1/90056e3a12d9324c74f383fe6c23068325ee.pdf">P.S. Lampropoulou, A.S. Lampropoulos and G.A. Tsihrintzis, <i>Musical Genre Classification of Audio Data Using Source Separation Techniques</i></a></li>
+                    <li><a href="http://www.cs.northwestern.edu/~pardo/courses/eecs352/papers/genre%20classification%20high%20level%20-%20mckay.pdf ">C. Mckay, I. Fujinaga, <i>Automatic Genre Classification Using Large High-Level Musical Feature Sets</a></li>
+                    <li><a href="http://music.cs.northwestern.edu/publications/Rafii-Pardo%20-%20REpeating%20Pattern%20Extraction%20Technique%20(REPET)%20A%20Simple%20Method%20for%20Music-Voice%20Separation%20-%20TALSP%202013.pdf">Z Rafii, B. Pardo, REpeating Pattern Extraction Technique (REPET): A Simple Method for Music/Voice Separation </i></a></li>
+                    <li><a href="https://bmcfee.github.io/papers/scipy2015_librosa.pdf">B. McFee, C. Raffel, D Liang, D.P.W. Ellis, M. McVicar , E. Battenberg, O. Nietok, <i>Librosa: Audio and Music Signal Analysis in Python</i></a> </li>
+                    <li><a href="http://ieeexplore.ieee.org/document/6882210/">H. Tachibana, N. Ono, H. Kameoka, S. Sagayama, <i>Harmonic/Percussive Sound Separation Based on Anisotropic Smoothness of Spectrograms </i></a> </li>
+                </ol>   
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+
+
+
+
+
+
+
     </div>
-    <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
+    <!-- /.container -->
 
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
 
-  {% if site.google_analytics %}
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ site.google_analytics }}', 'auto');
-        ga('send', 'pageview');
-    </script>
-  {% endif %}
-  </body>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
 </html>
